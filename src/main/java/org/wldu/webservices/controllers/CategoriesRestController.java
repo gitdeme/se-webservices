@@ -1,7 +1,6 @@
 package org.wldu.webservices.controllers;
 
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +61,7 @@ public class CategoriesRestController {
         CategoriesEntity updatedCategory = categoriesService.updateCategory(id, category);
         return ResponseEntity.ok(updatedCategory);
     }
+
     @GetMapping
     public List<CategoriesEntity> getAll() {
         return categoriesService.getAllCategoryNames();
@@ -72,6 +72,5 @@ public class CategoriesRestController {
         categoriesService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
+

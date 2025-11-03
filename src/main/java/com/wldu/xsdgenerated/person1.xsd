@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/person"
+           xmlns="http://example.com/person"
+           elementFormDefault="qualified">
+
+    <!-- Root element -->
+    <xs:element name="Person" type="PersonType"/>
+
+    <!-- Person type definition -->
+    <xs:complexType name="PersonType">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <!-- age must be >= 18 -->
+            <xs:element name="age">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="18"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- sex must be male or female -->
+            <xs:element name="sex">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="male"/>
+                        <xs:enumeration value="female"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="address" type="AddressType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Address type definition -->
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="street" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="zipCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- CRUD operations -->
+
+    <xs:element name="createPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="person" type="PersonType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="person" type="PersonType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="person" type="PersonType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updatePersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deletePersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="firstName" type="xs:string"/>
+                <xs:element name="lastName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deletePersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="listPersonsRequest" type="xs:anyType"/>
+
+    <xs:element name="listPersonsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="persons" type="PersonType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+</xs:schema>
