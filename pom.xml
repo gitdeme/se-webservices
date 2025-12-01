@@ -42,10 +42,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,17 +65,17 @@
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
-		<!-- JAXB (XML Binding) -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-xml</artifactId>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.2</version>
 		</dependency>
-
-		<!-- JAXB Runtime for JDK 11+ -->
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
+			<version>4.0.2</version>
 		</dependency>
+
 
 
 		<dependency>
@@ -113,6 +110,11 @@
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-xjc</artifactId>
+			<version>3.0.2</version>
+		</dependency>
 
 	</dependencies>
 
@@ -144,24 +146,35 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.14.0</version>
+				<groupId>org.jvnet.jaxb</groupId>
+				<artifactId>jaxb-maven-plugin</artifactId>
+				<version>4.0.8</version>
 				<executions>
 					<execution>
+						<id>generate</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
-					<schemaIncludes>
-						<include>person.xsd</include>
-					</schemaIncludes>
+					<schemas>
+						<schema>
+							<fileset>
+								<directory>${project.basedir}/src/main/resources</directory>
+								<includes>
+									<include>course.xsd</include>
+									<include>calculator.xsd</include>
+									<include>person.xsd</include>
+								</includes>
+							</fileset>
+						</schema>
+					</schemas>
 					<generatePackage>org.wldu.xsdgenerated</generatePackage>
 				</configuration>
 			</plugin>
+
+
 
 		</plugins>
 	</build>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://example.com/course"
+        xmlns:tns="http://example.com/course"
+        elementFormDefault="qualified">
+
+    <!-- ================= Course Type ================= -->
+    <xs:complexType name="CourseType">
+        <xs:sequence>
+            <xs:element name="courseCode" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="ects" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ================= Create Course ================= -->
+    <xs:element name="CreateCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="course" type="tns:CourseType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ================= Get Course ================= -->
+    <xs:element name="GetCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="courseCode" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="course" type="tns:CourseType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ================= Get All Courses ================= -->
+    <xs:element name="GetAllCoursesRequest" type="xs:anyType"/>
+
+    <xs:element name="GetAllCoursesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="course" type="tns:CourseType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ================= Update Course ================= -->
+    <xs:element name="UpdateCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="course" type="tns:CourseType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ================= Delete Course ================= -->
+    <xs:element name="DeleteCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="courseCode" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

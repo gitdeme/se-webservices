@@ -11,8 +11,8 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
-//@EnableWs
-//@Configuration
+@EnableWs
+@Configuration
 public class SoapWebServiceConfig {
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
@@ -36,4 +36,36 @@ public class SoapWebServiceConfig {
     public XsdSchema personSchema() {
         return new SimpleXsdSchema(new ClassPathResource("person.xsd"));
     }
+
+    // ========== COURSE SERVICE ==========
+    @Bean(name = "courses")
+    public DefaultWsdl11Definition courseWsdl(XsdSchema courseSchema) {
+        DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
+        wsdl.setPortTypeName("CoursePort");
+        wsdl.setTargetNamespace("http://example.com/course");
+        wsdl.setLocationUri("/ws/course");
+        wsdl.setSchema(courseSchema);
+        return wsdl;
+    }
+
+    @Bean
+    public XsdSchema courseSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("course.xsd"));
+    }
+    @Bean(name = "calculator")
+    public DefaultWsdl11Definition calculatorWsdl11Definition(XsdSchema calculatorSchema) {
+        DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
+        wsdl.setPortTypeName("CalculatorPort");
+        wsdl.setTargetNamespace("http://example.com/calculator");
+        wsdl.setLocationUri("/ws");
+        wsdl.setSchema(calculatorSchema);
+        return wsdl;
+    }
+
+    @Bean
+    public XsdSchema calculatorSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("calculator.xsd"));
+    }
+
+
 }
