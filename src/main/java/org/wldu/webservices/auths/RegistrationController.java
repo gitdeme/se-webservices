@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

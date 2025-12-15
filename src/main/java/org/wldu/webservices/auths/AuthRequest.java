@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

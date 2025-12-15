@@ -1,6 +1,8 @@
 package org.wldu.webservices.config;
 
-import auths.JwtAuthFilter;
+import org.wldu.webservices.auths.CustomUserDetailsService;
+import org.wldu.webservices.auths.JwtAuthFilter;
+import org.wldu.webservices.auths.JwtUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +24,11 @@ public class SecurityConfig {
     public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
-
+    @Bean
+    public JwtAuthFilter jwtAuthFilter(JwtUtil jwtUtil,
+                                       CustomUserDetailsService userDetailsService) {
+        return new JwtAuthFilter(jwtUtil, userDetailsService);
+    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 

@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

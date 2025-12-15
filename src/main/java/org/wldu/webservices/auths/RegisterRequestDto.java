@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 public class RegisterRequestDto {
     private String username;

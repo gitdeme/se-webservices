@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package auths;
+package org.wldu.webservices.auths;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
