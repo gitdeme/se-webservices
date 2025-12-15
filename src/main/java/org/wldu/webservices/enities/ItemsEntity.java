@@ -1,6 +1,5 @@
 package org.wldu.webservices.enities;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +11,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "items")
-@Data
-@NoArgsConstructor
 public class ItemsEntity {
     @Id
     @GeneratedValue

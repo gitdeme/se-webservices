@@ -63,6 +63,7 @@ public class CategoriesRestController {
     }
 
     @GetMapping
+
     public List<CategoriesEntity> getAll() {
         return categoriesService.getAllCategoryNames();
     }
