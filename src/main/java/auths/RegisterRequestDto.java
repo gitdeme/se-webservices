@@ -1,10 +1,6 @@
 package auths;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-
-class AuthRequest {
+public class RegisterRequestDto {
     private String username;
     private String password;
 
@@ -22,19 +18,5 @@ class AuthRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-}
-
-
-@AllArgsConstructor
-class AuthResponse {
-    private String token;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 }
