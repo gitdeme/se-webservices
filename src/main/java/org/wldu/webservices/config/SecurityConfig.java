@@ -24,11 +24,7 @@ public class SecurityConfig {
     public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
-    @Bean
-    public JwtAuthFilter jwtAuthFilter(JwtUtil jwtUtil,
-                                       CustomUserDetailsService userDetailsService) {
-        return new JwtAuthFilter(jwtUtil, userDetailsService);
-    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -40,6 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/user/register").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter,
